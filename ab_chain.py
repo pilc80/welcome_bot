@@ -21,6 +21,7 @@ dispatcher = updater.dispatcher
 
 
 def get_query(bot, update):
+
     if update.callback_query:
         query = update.callback_query
     else:
@@ -31,7 +32,11 @@ def get_query(bot, update):
 def on_user_joins(bot, update):
     global MESSAGE_ID
     query = get_query(bot, update)
+
     if len(query.message.new_chat_members) > 0 and query.message.chat.type in ["group", "supergroup"]:
+
+        logging.info('--- test message ---')
+
         for user in query.message.new_chat_members:
             if user.username != None:
                 text = WELCOME_TEXT.format(u'@' + user.username)
