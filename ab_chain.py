@@ -40,10 +40,11 @@ def on_user_joins(bot, update):
         logging.info('Message id:')
         logging.info(query.message.message_id)
 
+        logging.info('Message text:')
+        logging.info(query.message.text)
+
 
     if len(query.message.new_chat_members) > 0 and query.message.chat.type in ["group", "supergroup"]:
-
-        logging.info('--- test message ---')
 
         for user in query.message.new_chat_members:
             if user.username != None:
