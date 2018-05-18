@@ -45,7 +45,7 @@ def on_user_joins(bot, update):
 
         urls = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', query.message.text)
 
-        >>> print urls
+        print (urls)
 
     if len(query.message.new_chat_members) > 0 and query.message.chat.type in ["group", "supergroup"]:
 
