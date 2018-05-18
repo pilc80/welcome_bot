@@ -36,12 +36,6 @@ def on_user_joins(bot, update):
     query = get_query(bot, update)
 
     if len(query.message.text) > 0 :
-        logging.info('Message id:')
-        logging.info(query.message.message_id)
-
-        logging.info('Message text:')
-        logging.info(query.message.text)
-
         urls = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', query.message.text)
 
         delete_message = 0
@@ -49,13 +43,10 @@ def on_user_joins(bot, update):
         if len(urls) > 0:
             for url in urls:
                 url_info = urlparse(url)
-                print (url_info.netloc)
                 if (os.environ['ALOWED_URL_DOMAINS'].find(url_info.netloc) < 0):
                     delete_message = 1
+        logging.info('Illegal link detected. Message will be terminated:'+query.message.message_id)
 
-
-        logging.info('Need to delete message:')
-        logging.info(delete_message)
         if delete_message == 1:
             bot.deleteMessage(chat_id=query.message.chat.id, message_id=query.message.message_id,timeout=1)
 
