@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals, print_function
+from urlparse import urlparse
 
 import logging
 import os
@@ -34,9 +35,6 @@ def on_user_joins(bot, update):
     global MESSAGE_ID
     query = get_query(bot, update)
 
-
-
-
     if len(query.message.text) > 0 :
         logging.info('Message id:')
         logging.info(query.message.message_id)
@@ -46,7 +44,18 @@ def on_user_joins(bot, update):
 
         urls = re.findall('https?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', query.message.text)
 
-        print (urls)
+        delete_message = 0
+
+        if len(urls) > 0:
+            for url in urls:
+                url_info = urlparse(url)
+                print (url_info.netloc)
+                if (os.environ['ALOWED_URL_DOMAINS'].find(url_info.netloc) < 0):
+                    delete_message = 1
+
+
+        logging.info('Need to delete message:')
+        logging.info(delete_message)
 
     if len(query.message.new_chat_members) > 0 and query.message.chat.type in ["group", "supergroup"]:
 
