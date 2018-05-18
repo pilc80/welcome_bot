@@ -4,6 +4,7 @@ from __future__ import unicode_literals, print_function
 
 import logging
 import os
+import re
 
 from telegram.ext import Updater, Filters, MessageHandler
 
