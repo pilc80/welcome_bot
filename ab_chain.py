@@ -57,7 +57,7 @@ def on_user_joins(bot, update):
         logging.info('Need to delete message:')
         logging.info(delete_message)
         if delete_message == 1:
-            bot.deleteMessage(chat_id=query.message.chat.id,2)
+            bot.deleteMessage(chat_id=query.message.chat.id, message_id=query.message.message_id,timeout=1)
 
     if len(query.message.new_chat_members) > 0 and query.message.chat.type in ["group", "supergroup"]:
 
