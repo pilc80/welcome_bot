@@ -36,7 +36,7 @@ def on_user_joins(bot, update):
 
 
 
-    if len(query.message.message_id) > 0 :
+    if query.message.message_id > 0 :
         logging.info('Message id:')
         logging.info(query.message.message_id)
 
