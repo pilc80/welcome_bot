@@ -45,7 +45,7 @@ def on_user_joins(bot, update):
                 url_info = urlparse(url)
                 if (os.environ['ALOWED_URL_DOMAINS'].find(url_info.netloc) < 0):
                     delete_message = 1
-        logging.info('Illegal link detected. Message will be terminated:'+query.message.message_id)
+        logging.info('Illegal link detected. Message will be terminated:'+str(query.message.message_id))
 
         if delete_message == 1:
             bot.deleteMessage(chat_id=query.message.chat.id, message_id=query.message.message_id,timeout=1)
