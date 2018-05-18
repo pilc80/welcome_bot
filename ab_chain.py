@@ -33,6 +33,13 @@ def on_user_joins(bot, update):
     global MESSAGE_ID
     query = get_query(bot, update)
 
+
+
+
+    if len(query.message.message_id) > 0 :
+        logging.info(query.message.message_id)
+
+
     if len(query.message.new_chat_members) > 0 and query.message.chat.type in ["group", "supergroup"]:
 
         logging.info('--- test message ---')
