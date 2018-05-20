@@ -48,8 +48,8 @@ def on_user_joins(bot, update):
 
         user = bot.getChatMember(chat_id=query.message.chat.id,user_id=query.message.from_user.id)
 
-        if user.status == 'creator':
-            logging.info('creator')
+        if user.status == 'creator' or user.status == 'administrator':
+            logging.info('uuuuuuusser')
 
 
         logging.info(user.status)
