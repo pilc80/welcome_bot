@@ -45,9 +45,15 @@ def on_user_joins(bot, update):
                 url_info = urlparse(url)
                 if (os.environ['ALOWED_URL_DOMAINS'].find(url_info.netloc) < 0):
                     delete_message = 1
-        logging.info('Illegal link detected. Message will be terminated. maessage id - '+str(query.message.message_id))
+
+        bot.getChatMember(query.message.chat.id, query.message.from.id).then(function(data) {
+            if ((data.status == "creator") || (data.status == "administrator")){
+                delete_message = 0
+            }
+        });
 
         if delete_message == 1:
+            logging.info('Illegal link detected. Message will be terminated. maessage id - '+str(query.message.message_id))
             bot.deleteMessage(chat_id=query.message.chat.id, message_id=query.message.message_id,timeout=1)
 
     if len(query.message.new_chat_members) > 0 and query.message.chat.type in ["group", "supergroup"]:
