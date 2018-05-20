@@ -47,7 +47,7 @@ def on_user_joins(bot, update):
                     delete_message = 1
 
         user = bot.getChatMember(chat_id=query.message.chat.id,user_id=query.message.from_user.id)
-        if user.status == 'creator' || user.status == 'administrator'
+        if user.status == 'creator' || user.status == 'administrator':
             delete_message = 0
 
         if delete_message == 1:
