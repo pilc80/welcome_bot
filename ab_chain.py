@@ -47,8 +47,8 @@ def on_user_joins(bot, update):
                     delete_message = 1
 
         user = bot.getChatMember(chat_id=query.message.chat.id,user_id=query.message.from_user.id)
-        if user.status == 'creator' || user.status == 'administrator':
-            delete_message = 0
+        # if user.status == 'creator' || user.status == 'administrator':
+            # delete_message = 0
 
         if delete_message == 1:
             logging.info('Illegal link detected. Message will be terminated. maessage id - '+str(query.message.message_id))
